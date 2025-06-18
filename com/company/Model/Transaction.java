@@ -3,6 +3,7 @@ package com.company.Model;
 import java.io.Serializable;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.security.Signature;
 import java.security.SignatureException;
@@ -55,7 +56,7 @@ public class Transaction implements Serializable {
 		this.signatureFX = encoder.encodeToString(this.signature);
 	}
 
-	public Boolean isVerified(Signature signing) throws InvalidKeyException, SignatureException {
+	public Boolean isVerified(Signature signing) throws InvalidKeyException, SignatureException, NoSuchAlgorithmException, InvalidKeySpecException {
 		X509EncodedKeySpec keySpec = new X509EncodedKeySpec(this.getFrom());
 		KeyFactory keyFactory = KeyFactory.getInstance("DSA");
 		PublicKey publicKey = keyFactory.generatePublic(keySpec);
