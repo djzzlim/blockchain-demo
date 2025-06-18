@@ -98,12 +98,12 @@ public class Block implements Serializable {
 	@Override
 	public String toString() {
 		return "Block{" + 
-					"prevHash=" + Arrays.toString(prevHash) +
-					", timeStamp=" + timeStamp + '\'' +
-					", minedBy=" + Arrays.toString(minedBy) +
-					", ledgerId=" + ledgerId +
-					", miningPoints=" + miningPoints +
-					", luck=" + luck +
-					'}';
+			"prevHash=" + Arrays.toString(prevHash) +
+			", timeStamp=" + timeStamp + '\'' +
+			", minedBy=" + Arrays.toString(minedBy) +
+			", ledgerId=" + ledgerId +
+			", miningPoints=" + miningPoints +
+			", luck=" + luck +
+			'}';
 	}
 }
