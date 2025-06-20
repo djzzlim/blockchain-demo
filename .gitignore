@@ -1,5 +1,8 @@
 *.class
 .vscode
+.idea
+blockchain.iml
 
 libs/*
 .vscode/*
+.idea/*
