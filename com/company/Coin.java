@@ -61,7 +61,7 @@ public class Coin extends Application {
 			WalletData.getInstance().loadWallet();
 
 			// This will create the db tables with columns for the Blockchain.
-			Connection blockchainConnetion = DriverManager
+			Connection blockchainConnection = DriverManager
 				.getConnection("jdbc:sqlite:./db/blockchain.db");
 			Statement blockchainStmt = blockchainConnection.createStatement();
 			blockchainStmt.executeUpdate("CREATE TABLE IF NOT EXISTS BLOCKCHAIN ( " +
@@ -122,10 +122,8 @@ public class Coin extends Application {
 			}
 			blockchainStmt.close();
 			blockchainConnection.close();
-		} catch (SQLException | NoSuchAlgorithmException | InvalidKeyException | SignatureException e) {
+		} catch (SQLException | NoSuchAlgorithmException | SignatureException e) {
 			System.out.println("db failed: " + e.getMessage());
-		} catch (GeneralSecurityException e) {
-			e.printStackTrace();
 		}
 		BlockchainData.getInstance().loadBlockChain();
 	}
