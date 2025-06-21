@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller.MainWindowController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller.MainWindowController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Menu">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#toNetTransactionController" text="Make Transaction" />
+                  <MenuItem mnemonicParsing="false" onAction="#toNewTransactionController" text="Make Transaction" />
               <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Close" />
             </items>
           </Menu>
@@ -31,7 +31,7 @@
             <AnchorPane prefHeight="56.0" prefWidth="136.0" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutX="6.0" layoutY="5.0" prefHeight="17.0" prefWidth="84.0" text="Your Balance:" />
-                  <TextField fx:id="Coins" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="125.0" />
+                  <TextField fx:id="coins" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="125.0" />
                </children>
             </AnchorPane>
          </left>
@@ -57,11 +57,11 @@
         <columns>
           <TableColumn prefWidth="75.0" text="Current Block Transactions">
                <columns>
-                <TableColumn prefWidth="160.0" text="From" />
-                  <TableColumn prefWidth="160.0" text="To" />
-                  <TableColumn prefWidth="160.0" text="Value" />
-                  <TableColumn prefWidth="160.0" text="Signature" />
-                  <TableColumn prefWidth="160.0" text="Created On" />
+                <TableColumn fx:id="from" prefWidth="160.0" text="From" />
+                  <TableColumn fx:id="to" prefWidth="160.0" text="To" />
+                  <TableColumn fx:id="value" prefWidth="160.0" text="Value" />
+                  <TableColumn fx:id="signature" prefWidth="160.0" text="Signature" />
+                  <TableColumn fx:id="timestamp" prefWidth="160.0" text="Created On" />
                </columns>
             </TableColumn>
         </columns>
