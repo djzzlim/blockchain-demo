@@ -65,7 +65,7 @@ public class MainWindowController {
             System.err.println("Cant load dialog");
             e.printStackTrace();
         }
-        newTransactionController.getDialogPane().getButtonTypes().add(ButtonTypes.FINISH);
+        newTransactionController.getDialogPane().getButtonTypes().add(ButtonType.FINISH);
         Optional<ButtonType> result = newTransactionController.showAndWait();
         if (result.isPresent()) {
             tableView.setItems(BlockchainData.getInstance().getTransactionLedgerFX());
@@ -82,7 +82,7 @@ public class MainWindowController {
 
     @FXML
     public void handleExit() {
-        BlockchainData.getInstance.setExit(true);
+        BlockchainData.getInstance().setExit(true);
         Platform.exit();
     }
 }
