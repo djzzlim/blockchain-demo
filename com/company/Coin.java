@@ -26,7 +26,7 @@ public class Coin extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		new UI().start(primaryStage);
 		new PeerClient().start();
-		new PeerServer(6000).start();
+		new PeerServer(6001).start();
 		new MiningThread().start();
 	}
 
@@ -43,7 +43,7 @@ public class Coin extends Application {
 				" PRIMARY KEY (PRIVATE_KEY, PUBLIC_KEY)" +
 				") "
 			);
-			ResultSet resultSet = walletStatement.executeQuery(" SELECT * FORM WALLET ");
+			ResultSet resultSet = walletStatement.executeQuery(" SELECT * FROM WALLET ");
 			if (!resultSet.next()) {
 				Wallet newWallet = new Wallet();
 				byte[] pubBlob = newWallet.getPublicKey().getEncoded();
@@ -124,7 +124,9 @@ public class Coin extends Application {
 			blockchainConnection.close();
 		} catch (SQLException | NoSuchAlgorithmException | SignatureException e) {
 			System.out.println("db failed: " + e.getMessage());
-		}
-		BlockchainData.getInstance().loadBlockChain();
+		} catch (GeneralSecurityException e) {
+            throw new RuntimeException(e);
+        }
+        BlockchainData.getInstance().loadBlockChain();
 	}
 }
