@@ -24,19 +24,19 @@ public class PeerClient extends Thread {
     @Override
     public void run() {
         while (true) {
-            try (Socket socket = new Socker("127.0.0.1", queue.peek())) {
+            try (Socket socket = new Socket("127.0.0.1", queue.peek())) {
                 System.out.println("Sending blockchain object on port: " + queue.peek());
                 queue.add(queue.poll());
                 socket.setSoTimeout(5000);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
                 ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
 
-                LinkedList<Block> blockchain = BlockchainData.getInstance().getCurrentBlockchain();
+                LinkedList<Block> blockchain = BlockchainData.getInstance().getCurrentBlockChain();
                 objectOutput.writeObject(blockchain);
 
                 LinkedList<Block> returnedBlockchain = (LinkedList<Block>) objectInput.readObject();
-                System.out.println("RETURNED BC ;edgerId = " + returnedBlockchain.getLast().getLedgerId() + " Size = " + returnedBlockchain.getLast().getTransactionLedger().size());
-                BlockchainData.getInstance().getBlockchainConcensis(returnedBlockchain);
+                System.out.println("RETURNED BC ; LedgerId = " + returnedBlockchain.getLast().getLedgerId() + " Size = " + returnedBlockchain.getLast().getTransactionLedger().size());
+                BlockchainData.getInstance().getBlockchainConsensus(returnedBlockchain);
                 Thread.sleep(1000);
             } catch (SocketTimeoutException e) {
                 System.out.println("The socket timed out");
